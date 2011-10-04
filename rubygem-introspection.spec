@@ -8,8 +8,9 @@
 Summary: Dynamic inspection of the hierarchy of method definitions on a Ruby object
 Name: rubygem-%{gemname}
 Version: 0.0.2
-Release: 2%{?dist}
+Release: 3%{?dist}
 Group: Development/Languages
+# https://github.com/floehopper/introspection/issues/1
 License: MIT
 URL: http://jamesmead.org
 Source0: http://rubygems.org/gems/%{gemname}-%{version}.gem
@@ -28,6 +29,11 @@ Requires: rubygem(metaclass) < 0.1
 BuildRequires: ruby(abi) = %{rubyabi}
 BuildRequires: ruby(rubygems) >= 1.3.6
 BuildRequires: ruby
+BuildRequires: rubygem(metaclass) => 0.0.1
+BuildRequires: rubygem(metaclass) < 0.1
+# Required to satisty the 'blankslate' require. May be replaced
+# by rubygem(blankslate) when available in Fedora.
+BuildRequires: rubygem(builder)
 BuildArch: noarch
 Provides: rubygem(%{gemname}) = %{version}
 
@@ -66,7 +72,7 @@ cp -a .%{gemdir}/* \
 pushd .%{geminstdir}
 # Disable Bundler
 sed -i '2,2d' test/test_helper.rb
-testrb -Ilib test
+testrb -Ilib test/*_test.rb
 popd
 
 
@@ -74,7 +80,6 @@ popd
 %dir %{geminstdir}
 %exclude %{geminstdir}/.gitignore
 %exclude %{geminstdir}/.travis.yml
-%{geminstdir}/README.md
 %exclude %{geminstdir}/introspection.gemspec
 %{geminstdir}/lib
 %{geminstdir}/test
@@ -82,6 +87,7 @@ popd
 %{gemdir}/specifications/%{gemname}-%{version}.gemspec
 
 %files doc
+%doc %{geminstdir}/README.md
 %{geminstdir}/Gemfile
 %{geminstdir}/Rakefile
 %{geminstdir}/samples
@@ -89,6 +95,10 @@ popd
 
 
 %changelog
+* Tue Oct 04 2011 Vít Ondruch <vondruch@redhat.com> - 0.0.2-3
+- Fix BuildRequires and test suite.
+- Move README.md into -doc subpackage and mark it properly.
+
 * Tue Oct 04 2011 Vít Ondruch <vondruch@redhat.com> - 0.0.2-2
 - Clarified license.
 

@@ -8,9 +8,9 @@
 Summary: Dynamic inspection of the hierarchy of method definitions on a Ruby object
 Name: rubygem-%{gemname}
 Version: 0.0.2
-Release: 1%{?dist}
+Release: 2%{?dist}
 Group: Development/Languages
-License: MIT and Ruby
+License: MIT
 URL: http://jamesmead.org
 Source0: http://rubygems.org/gems/%{gemname}-%{version}.gem
 # Remove instantiator dependency.
@@ -89,5 +89,8 @@ popd
 
 
 %changelog
+* Tue Oct 04 2011 Vít Ondruch <vondruch@redhat.com> - 0.0.2-2
+- Clarified license.
+
 * Mon Oct 03 2011 Vít Ondruch <vondruch@redhat.com> - 0.0.2-1
 - Initial package

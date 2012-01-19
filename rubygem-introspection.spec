@@ -1,19 +1,17 @@
 # Generated from introspection-0.0.2.gem by gem2rpm -*- rpm-spec -*-
-%global gemname introspection
+%global gem_name introspection
 
-%global gemdir %(ruby -rubygems -e 'puts Gem::dir' 2>/dev/null)
-%global geminstdir %{gemdir}/gems/%{gemname}-%{version}
-%global rubyabi 1.8
+%global rubyabi 1.9.1
 
 Summary: Dynamic inspection of the hierarchy of method definitions on a Ruby object
-Name: rubygem-%{gemname}
+Name: rubygem-%{gem_name}
 Version: 0.0.2
-Release: 4%{?dist}
+Release: 5%{?dist}
 Group: Development/Languages
 # https://github.com/floehopper/introspection/issues/1
 License: MIT
 URL: http://jamesmead.org
-Source0: http://rubygems.org/gems/%{gemname}-%{version}.gem
+Source0: http://rubygems.org/gems/%{gem_name}-%{version}.gem
 # Remove instantiator dependency.
 # https://github.com/floehopper/introspection/issues/2
 Patch0: %{name}-%{version}-update-dep.patch
@@ -27,15 +25,15 @@ Requires: rubygem(metaclass) < 0.1
 # Requires: rubygem(instantiator) => 0.0.3
 # Requires: rubygem(instantiator) < 0.1
 BuildRequires: ruby(abi) = %{rubyabi}
-BuildRequires: ruby(rubygems) >= 1.3.6
+BuildRequires: rubygems-devel
 BuildRequires: ruby
 BuildRequires: rubygem(metaclass) => 0.0.1
 BuildRequires: rubygem(metaclass) < 0.1
-# Required to satisty the 'blankslate' require. May be replaced
+# Required to satisfy the 'blankslate' require. May be replaced
 # by rubygem(blankslate) when available in Fedora.
 BuildRequires: rubygem(builder)
 BuildArch: noarch
-Provides: rubygem(%{gemname}) = %{version}
+Provides: rubygem(%{gem_name}) = %{version}
 
 %description
 Dynamic inspection of the hierarchy of method definitions on a Ruby object
@@ -53,23 +51,23 @@ Documentation for %{name}
 
 %prep
 %setup -q -c -T
-mkdir -p .%{gemdir}
-gem install --local --install-dir .%{gemdir} \
+mkdir -p .%{gem_dir}
+gem install --local --install-dir .%{gem_dir} \
             --force %{SOURCE0}
 
-pushd .%{gemdir}
+pushd .%{gem_dir}
 %patch0 -p0
 popd
 
 %build
 
 %install
-mkdir -p %{buildroot}%{gemdir}
-cp -a .%{gemdir}/* \
-        %{buildroot}%{gemdir}/
+mkdir -p %{buildroot}%{gem_dir}
+cp -a .%{gem_dir}/* \
+        %{buildroot}%{gem_dir}/
 
 %check
-pushd .%{geminstdir}
+pushd .%{gem_instdir}
 # Disable Bundler
 sed -i '2,2d' test/test_helper.rb
 testrb -Ilib test/*_test.rb
@@ -77,24 +75,27 @@ popd
 
 
 %files
-%dir %{geminstdir}
-%exclude %{geminstdir}/.gitignore
-%exclude %{geminstdir}/.travis.yml
-%exclude %{geminstdir}/introspection.gemspec
-%{geminstdir}/lib
-%{geminstdir}/test
-%exclude %{gemdir}/cache/%{gemname}-%{version}.gem
-%{gemdir}/specifications/%{gemname}-%{version}.gemspec
+%dir %{gem_instdir}
+%exclude %{gem_instdir}/.gitignore
+%exclude %{gem_instdir}/.travis.yml
+%exclude %{gem_instdir}/introspection.gemspec
+%{gem_libdir}
+%{gem_instdir}/test
+%exclude %{gem_cache}
+%{gem_spec}
 
 %files doc
-%doc %{geminstdir}/README.md
-%{geminstdir}/Gemfile
-%{geminstdir}/Rakefile
-%{geminstdir}/samples
-%doc %{gemdir}/doc/%{gemname}-%{version}
+%doc %{gem_instdir}/README.md
+%{gem_instdir}/Gemfile
+%{gem_instdir}/Rakefile
+%{gem_instdir}/samples
+%doc %{gem_docdir}
 
 
 %changelog
+* Thu Jan 19 2012 Vít Ondruch <vondruch@redhat.com> - 0.0.2-5
+- Rebuilt for Ruby 1.9.3.
+
 * Sat Jan 14 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.0.2-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_17_Mass_Rebuild
 

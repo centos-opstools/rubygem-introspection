@@ -32,6 +32,7 @@ BuildRequires: rubygem(metaclass) < 0.1
 # Required to satisfy the 'blankslate' require. May be replaced
 # by rubygem(blankslate) when available in Fedora.
 BuildRequires: rubygem(builder)
+BuildRequires: rubygem(minitest)
 BuildArch: noarch
 Provides: rubygem(%{gem_name}) = %{version}
 

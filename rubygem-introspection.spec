@@ -1,12 +1,11 @@
 # Generated from introspection-0.0.2.gem by gem2rpm -*- rpm-spec -*-
 %global gem_name introspection
 
-%global rubyabi 1.9.1
 
 Summary: Dynamic inspection of the hierarchy of method definitions on a Ruby object
 Name: rubygem-%{gem_name}
 Version: 0.0.2
-Release: 7%{?dist}
+Release: 8%{?dist}
 Group: Development/Languages
 # https://github.com/floehopper/introspection/issues/1
 License: MIT
@@ -15,7 +14,7 @@ Source0: http://rubygems.org/gems/%{gem_name}-%{version}.gem
 # Remove instantiator dependency.
 # https://github.com/floehopper/introspection/issues/2
 Patch0: %{name}-%{version}-update-dep.patch
-Requires: ruby(abi) = %{rubyabi}
+Requires: ruby(release)
 Requires: ruby(rubygems) >= 1.3.6
 Requires: ruby
 Requires: rubygem(metaclass) => 0.0.1
@@ -24,7 +23,7 @@ Requires: rubygem(metaclass) < 0.1
 # https://github.com/floehopper/introspection/issues/2
 # Requires: rubygem(instantiator) => 0.0.3
 # Requires: rubygem(instantiator) < 0.1
-BuildRequires: ruby(abi) = %{rubyabi}
+BuildRequires: ruby(release)
 BuildRequires: rubygems-devel
 BuildRequires: ruby
 BuildRequires: rubygem(metaclass) => 0.0.1
@@ -52,9 +51,7 @@ Documentation for %{name}
 
 %prep
 %setup -q -c -T
-mkdir -p .%{gem_dir}
-gem install --local --install-dir .%{gem_dir} \
-            --force %{SOURCE0}
+%gem_install -n %{SOURCE0}
 
 pushd .%{gem_dir}
 %patch0 -p0
@@ -94,6 +91,9 @@ popd
 
 
 %changelog
+* Mon Feb 25 2013 Vít Ondruch <vondruch@redhat.com> - 0.0.2-8
+- Rebuild for https://fedoraproject.org/wiki/Features/Ruby_2.0.0
+
 * Thu Feb 14 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.0.2-7
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_19_Mass_Rebuild
 

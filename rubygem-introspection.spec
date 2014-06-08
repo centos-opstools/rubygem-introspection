@@ -5,7 +5,7 @@
 Summary: Dynamic inspection of the hierarchy of method definitions on a Ruby object
 Name: rubygem-%{gem_name}
 Version: 0.0.3
-Release: 1%{?dist}
+Release: 2%{?dist}
 Group: Development/Languages
 # https://github.com/floehopper/introspection/issues/1
 License: MIT
@@ -101,6 +101,9 @@ popd
 
 
 %changelog
+* Sun Jun 08 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.0.3-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_21_Mass_Rebuild
+
 * Mon Apr 07 2014 Vít Ondruch <vondruch@redhat.com> - 0.0.3-1
 - Update to introspection 0.0.3.
 

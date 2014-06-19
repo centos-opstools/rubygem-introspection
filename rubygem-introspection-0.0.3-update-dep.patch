@@ -1,6 +1,6 @@
 --- specifications/introspection-0.0.3.gemspec.orig
 +++ specifications/introspection-0.0.3.gemspec
-@@ -22,18 +22,15 @@
+@@ -24,18 +24,15 @@
  
      if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
        s.add_runtime_dependency(%q<metaclass>, ["~> 0.0.1"])

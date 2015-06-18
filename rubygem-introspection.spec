@@ -5,7 +5,7 @@
 Summary: Dynamic inspection of the hierarchy of method definitions on a Ruby object
 Name: rubygem-%{gem_name}
 Version: 0.0.3
-Release: 3%{?dist}
+Release: 4%{?dist}
 Group: Development/Languages
 # https://github.com/floehopper/introspection/issues/1
 License: MIT
@@ -101,6 +101,9 @@ popd
 
 
 %changelog
+* Thu Jun 18 2015 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.0.3-4
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_23_Mass_Rebuild
+
 * Thu Jun 19 2014 Vít Ondruch <vondruch@redhat.com> - 0.0.3-3
 - Fix FTBFS in Rawhide (rhbz#1107144).
 

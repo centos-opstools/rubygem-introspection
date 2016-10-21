@@ -19,13 +19,12 @@ Patch1: rubygem-introspection-0.0.3-Move-to-Minitest-5.patch
 BuildRequires: ruby(release)
 BuildRequires: rubygems-devel
 BuildRequires: ruby
-BuildRequires: rubygem(metaclass) => 0.0.1
-BuildRequires: rubygem(metaclass) < 0.1
+BuildRequires: rubygem-metaclass
 # Required to satisfy the 'blankslate' require. May be replaced
 # by rubygem(blankslate) when available in Fedora.
-BuildRequires: rubygem(builder)
+BuildRequires: rubygem-builder
 # There is no #assert_nothing_raised in minitest 5.x
-BuildRequires: rubygem(minitest)
+BuildRequires: rubygem-minitest
 BuildArch: noarch
 
 %description

@@ -59,6 +59,8 @@ mkdir -p %{buildroot}%{gem_dir}
 cp -a .%{gem_dir}/* \
         %{buildroot}%{gem_dir}/
 
+rm %{buildroot}%{gem_dir}/specifications/introspection-0.0.3.gemspec.orig
+
 %check
 pushd .%{gem_instdir}
 # Disable Bundler.

@@ -1,5 +1,5 @@
-# UUID          Group Name
-False 	Non-Interactive Users
-dc0dbd7e502ef9ce4d5ed8a83c1b405b442c5cd8       	centos-opstools/rubygem-introspection-core
-018aacdf39ae953e3cec493cc7d07a5e35f5fdb6        	centos-opstools/rubygem-introspection-ptl
-global:Registered-Users		Registered Users
+# UUID                                  	Group Name
+#
+757c85abcd9ba70f7b7b0fd5a0a43e7506f820c5	centos-opstools/ptl
+b60725751ff1c8f5f13106753f5233e2ea34f818	centos-opstools/core
+global:Registered-Users                 	Registered Users

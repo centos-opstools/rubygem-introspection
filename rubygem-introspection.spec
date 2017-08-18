@@ -3,7 +3,7 @@
 
 Name: rubygem-%{gem_name}
 Version: 0.0.3
-Release: 5%{?dist}
+Release: 6%{?dist}
 Summary: Dynamic inspection of the hierarchy of method definitions on a Ruby object
 Group: Development/Languages
 # https://github.com/floehopper/introspection/issues/1
@@ -26,6 +26,7 @@ BuildRequires: rubygem-builder
 # There is no #assert_nothing_raised in minitest 5.x
 BuildRequires: rubygem-minitest
 BuildArch: noarch
+Provides:  rubygem(%{gem_name}) = %{version}
 
 %description
 Dynamic inspection of the hierarchy of method definitions on a Ruby object.
@@ -89,6 +90,9 @@ popd
 %doc %{gem_docdir}
 
 %changelog
+* Fri Aug 18 2017 Matthias Runge <mrunge@redhat.com> - 0.0.3-6
+- add proper provides for centos-opstools
+
 * Thu Feb 04 2016 Fedora Release Engineering <releng@fedoraproject.org> - 0.0.3-5
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_24_Mass_Rebuild
 
